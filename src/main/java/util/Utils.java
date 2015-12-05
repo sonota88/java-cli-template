@@ -21,4 +21,8 @@ public class Utils {
         }
     }
 
+    public static String fmt(String format, Object ... args){
+        return String.format(format, args);
+    }
+
 }
