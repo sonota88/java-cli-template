@@ -1,6 +1,7 @@
 #!/bin/sh
 
-MVN_CMD="/path/to/apache-maven-x.x.x/bin/mvn"
+# MVN_CMD="/path/to/apache-maven-x.x.x/bin/mvn"
+MVN_CMD="mvn"
 
 _build() {
   $MVN_CMD clean
