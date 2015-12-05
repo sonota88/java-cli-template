@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         for(int i=0; i<args.length; i++){
-            puts(fmt("arg[%s] (%s)", i, args[i]));
+            putsf("arg[%s] (%s)", i, args[i]);
         }
 
         Options opts = new Options();
@@ -25,7 +25,7 @@ public class Main {
         CommandLine cl = new DefaultParser().parse(opts, args);
 
         for(int i=0; i<cl.getArgList().size(); i++){
-            puts(fmt("arg[%s] (%s)", i, cl.getArgList().get(i)));
+            putsf("arg[%s] (%s)", i, cl.getArgList().get(i));
         }
         puts(cl.hasOption("h"));
         puts(cl.hasOption("v"));

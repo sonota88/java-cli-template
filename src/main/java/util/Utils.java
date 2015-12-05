@@ -13,6 +13,10 @@ public class Utils {
         }
     }
 
+    public static void putsf(String format, Object ... args){
+        puts(fmt(format, args));
+    }
+
     public static String readFile(String path){
         try {
             return FileUtils.readFileToString(new File(path));
