@@ -29,5 +29,9 @@ public class Main {
         }
         puts(cl.hasOption("h"));
         puts(cl.hasOption("v"));
+
+        String content = readFile("README.md");
+        puts(content);
     }
+
 }
