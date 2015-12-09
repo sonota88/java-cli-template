@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
@@ -47,6 +48,11 @@ public class Main {
 
         puts(cl.hasOption("h"));
         puts(cl.hasOption("v"));
+
+        if(cl.hasOption("help")){
+            new HelpFormatter().printHelp("run_(mvn|gradle).sh", opts);
+            System.exit(0);
+        }
 
         String content = readFile("README.md");
         puts(content);
