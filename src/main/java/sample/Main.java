@@ -11,16 +11,16 @@ import static util.Utils.*;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        for(int i=0; i<args.length; i++){
-            putsf("arg[%s] (%s)", i, args[i]);
+    public static void main(String[] rawArgs) throws Exception {
+        for(int i=0; i<rawArgs.length; i++){
+            putsf("raw arg %s (%s)", i, rawArgs[i]);
         }
 
-        String currentDir = args[0];
-        String projectDir = args[1];
-        String[] mainArgs = new String[args.length - 2];
-        for(int i=2; i<args.length; i++){
-            mainArgs[i-2] = args[i];
+        String currentDir = rawArgs[0];
+        String projectDir = rawArgs[1];
+        String[] mainArgs = new String[rawArgs.length - 2];
+        for(int i=2; i<rawArgs.length; i++){
+            mainArgs[i-2] = rawArgs[i];
         }
 
         Options opts = new Options();
