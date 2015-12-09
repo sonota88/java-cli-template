@@ -13,6 +13,10 @@ public class Utils {
         }
     }
 
+    public static void putskv(Object k, Object v){
+        putsf("%s (%s)", k, v);
+    }
+
     public static void putsf(String format, Object ... args){
         puts(fmt(format, args));
     }

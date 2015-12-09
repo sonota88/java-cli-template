@@ -34,12 +34,12 @@ public class Main {
         CommandLine cl = new DefaultParser().parse(opts, mainArgs);
 
         List<String> restArgs = cl.getArgList();
-        putsf("currentDir (%s)", currentDir);
-        putsf("projectDir (%s)", projectDir);
-        putsf("restArgs size (%s)", restArgs.size());
+        putskv("currentDir", currentDir);
+        putskv("projectDir", projectDir);
+        putskv("restArgs size", restArgs.size());
 
         for(int i=0; i<restArgs.size(); i++){
-            putsf("arg[%s] (%s)", i, restArgs.get(i));
+            putsf("rest arg %s (%s)", i, restArgs.get(i));
         }
 
         puts(cl.hasOption("h"));
