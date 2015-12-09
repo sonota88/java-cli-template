@@ -8,6 +8,8 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
+import sample.model.Model;
+
 import static util.Utils.*;
 import static sample.Config.setEnv;
 import static sample.Config.getEnv;
@@ -63,6 +65,8 @@ public class Main {
             setEnv("devel");
         }
         puts(getEnv());
+
+        Model.main(restArgs);
     }
 
 }
