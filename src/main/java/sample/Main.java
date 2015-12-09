@@ -8,6 +8,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import static util.Utils.*;
+import static sample.Config.setEnv;
+import static sample.Config.getEnv;
 
 public class Main {
 
@@ -25,6 +27,7 @@ public class Main {
 
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");
+        opts.addOption(null, "env", true, "Environment");
 
         opts.addOption(Option.builder("v")
                 .hasArg()
@@ -47,6 +50,13 @@ public class Main {
 
         String content = readFile("README.md");
         puts(content);
+
+        if (cl.hasOption("env")) {
+            setEnv(cl.getOptionValue("env"));
+        } else {
+            setEnv("devel");
+        }
+        puts(getEnv());
     }
 
 }
