@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.List;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
@@ -14,6 +16,13 @@ public class Main {
             putsf("arg[%s] (%s)", i, args[i]);
         }
 
+        String currentDir = args[0];
+        String projectDir = args[1];
+        String[] mainArgs = new String[args.length - 2];
+        for(int i=2; i<args.length; i++){
+            mainArgs[i-2] = args[i];
+        }
+
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");
 
@@ -22,11 +31,17 @@ public class Main {
                 .desc("Print version")
                 .build());
 
-        CommandLine cl = new DefaultParser().parse(opts, args);
+        CommandLine cl = new DefaultParser().parse(opts, mainArgs);
 
-        for(int i=0; i<cl.getArgList().size(); i++){
-            putsf("arg[%s] (%s)", i, cl.getArgList().get(i));
+        List<String> restArgs = cl.getArgList();
+        putsf("currentDir (%s)", currentDir);
+        putsf("projectDir (%s)", projectDir);
+        putsf("restArgs size (%s)", restArgs.size());
+
+        for(int i=0; i<restArgs.size(); i++){
+            putsf("arg[%s] (%s)", i, restArgs.get(i));
         }
+
         puts(cl.hasOption("h"));
         puts(cl.hasOption("v"));
 
