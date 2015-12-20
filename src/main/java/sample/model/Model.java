@@ -1,8 +1,8 @@
 package sample.model;
 
-import java.util.List;
+import static util.Utils.puts;
 
-import static util.Utils.*;
+import java.util.List;
 
 public class Model {
 
@@ -14,5 +14,19 @@ public class Model {
 
     static int add(int a, int b){
         return a + b;
+    }
+
+    public static void cmdA(Boolean hasOptF, List<String> args) {
+
+        puts("cmd_1");
+        puts(hasOptF);
+        puts(args);
+    }
+
+    public static void cmdB(String optValB, List<String> args) {
+
+        puts("cmd_2");
+        puts(optValB);
+        puts(args);
     }
 }
