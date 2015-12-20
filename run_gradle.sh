@@ -22,7 +22,7 @@ _build() {
 _exec() {
   $GRADLE_CMD run \
     --quiet \
-    -Dexec.mainClass=sample.Main \
+    -DmainClassName=sample.Main \
     "-Pargs=$*"
 }
 
