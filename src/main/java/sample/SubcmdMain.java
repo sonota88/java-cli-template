@@ -18,11 +18,9 @@ public class SubcmdMain {
             putsf("raw arg %s (%s)", i, rawArgs[i]);
         }
 
-        String currentDir = rawArgs[0];
-        String projectDir = rawArgs[1];
+        Config.setCurrentDir(rawArgs[0]);
+        Config.setProjectDir(rawArgs[1]);
         String subcmd = rawArgs[2];
-        putskv("currentDir", currentDir);
-        putskv("projectDir", projectDir);
         putskv("subcmd", subcmd);
 
         String[] mainArgs = new String[rawArgs.length - 3];
