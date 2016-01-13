@@ -39,6 +39,7 @@ public class SubcmdMain {
         switch (subcmd) {
         case "cmd_a":
             opts.addOption("f", "foo", false, "Option foo");
+            opts.addOption(null, "env", true, "Environment");
             cl = parser.parse(opts, mainArgs);
 
             checkHelp(cl, opts);
@@ -50,6 +51,7 @@ public class SubcmdMain {
 
         case "cmd_b":
             opts.addOption("b", "bar", true, "Option bar");
+            opts.addOption(null, "env", true, "Environment");
             cl = parser.parse(opts, mainArgs);
 
             checkHelp(cl, opts);
