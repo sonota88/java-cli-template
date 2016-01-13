@@ -18,11 +18,9 @@ public class SubcmdMain {
             putsf("raw arg %s (%s)", i, rawArgs[i]);
         }
 
-        String currentDir = rawArgs[0];
-        String projectDir = rawArgs[1];
+        Config.setCurrentDir(rawArgs[0]);
+        Config.setProjectDir(rawArgs[1]);
         String subcmd = rawArgs[2];
-        putskv("currentDir", currentDir);
-        putskv("projectDir", projectDir);
         putskv("subcmd", subcmd);
 
         String[] mainArgs = new String[rawArgs.length - 3];
@@ -39,20 +37,24 @@ public class SubcmdMain {
         switch (subcmd) {
         case "cmd_a":
             opts.addOption("f", "foo", false, "Option foo");
+            opts.addOption(null, "env", true, "Environment");
             cl = parser.parse(opts, mainArgs);
 
             checkHelp(cl, opts);
             setEnv(cl);
+            Config.load();
 
             Model.cmdA(cl.hasOption("f"), cl.getArgList());
             break;
 
         case "cmd_b":
             opts.addOption("b", "bar", true, "Option bar");
+            opts.addOption(null, "env", true, "Environment");
             cl = parser.parse(opts, mainArgs);
 
             checkHelp(cl, opts);
             setEnv(cl);
+            Config.load();
 
             Model.cmdB(cl.getOptionValue("b"), cl.getArgList());
             break;

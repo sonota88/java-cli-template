@@ -13,6 +13,7 @@ import sample.model.Model;
 import static util.Utils.*;
 import static sample.Config.setEnv;
 import static sample.Config.getEnv;
+import static sample.Config.prop;
 
 public class Main {
 
@@ -21,8 +22,8 @@ public class Main {
             putsf("raw arg %s (%s)", i, rawArgs[i]);
         }
 
-        String currentDir = rawArgs[0];
-        String projectDir = rawArgs[1];
+        Config.setCurrentDir(rawArgs[0]);
+        Config.setProjectDir(rawArgs[1]);
         String[] mainArgs = new String[rawArgs.length - 2];
         for(int i=2; i<rawArgs.length; i++){
             mainArgs[i-2] = rawArgs[i];
@@ -40,8 +41,6 @@ public class Main {
         CommandLine cl = new DefaultParser().parse(opts, mainArgs);
 
         List<String> restArgs = cl.getArgList();
-        putskv("currentDir", currentDir);
-        putskv("projectDir", projectDir);
         putskv("restArgs size", restArgs.size());
 
         for(int i=0; i<restArgs.size(); i++){
@@ -65,6 +64,10 @@ public class Main {
             setEnv("devel");
         }
         puts(getEnv());
+
+        Config.load();
+
+        puts(prop("foo.bar"));
 
         Model.main(restArgs);
     }
