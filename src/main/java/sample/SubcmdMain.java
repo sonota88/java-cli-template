@@ -43,6 +43,7 @@ public class SubcmdMain {
 
             checkHelp(cl, opts);
             setEnv(cl);
+            Config.load();
 
             Model.cmdA(cl.hasOption("f"), cl.getArgList());
             break;
@@ -53,6 +54,7 @@ public class SubcmdMain {
 
             checkHelp(cl, opts);
             setEnv(cl);
+            Config.load();
 
             Model.cmdB(cl.getOptionValue("b"), cl.getArgList());
             break;

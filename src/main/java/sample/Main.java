@@ -13,6 +13,7 @@ import sample.model.Model;
 import static util.Utils.*;
 import static sample.Config.setEnv;
 import static sample.Config.getEnv;
+import static sample.Config.prop;
 
 public class Main {
 
@@ -65,6 +66,10 @@ public class Main {
             setEnv("devel");
         }
         puts(getEnv());
+
+        Config.load();
+
+        puts(prop("foo.bar"));
 
         Model.main(restArgs);
     }
