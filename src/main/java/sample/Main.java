@@ -18,15 +18,18 @@ import static sample.Config.prop;
 public class Main {
 
     public static void main(String[] rawArgs) throws Exception {
-        for(int i=0; i<rawArgs.length; i++){
-            putsf("raw arg %s (%s)", i, rawArgs[i]);
+        String allArgs = rawArgs[0];
+        String[] tempArgs = allArgs.split("\u001f");
+
+        for(int i=0; i<tempArgs.length; i++){
+            putsf("temp arg %s (%s)", i, tempArgs[i]);
         }
 
-        Config.setCurrentDir(rawArgs[0]);
-        Config.setProjectDir(rawArgs[1]);
-        String[] mainArgs = new String[rawArgs.length - 2];
-        for(int i=2; i<rawArgs.length; i++){
-            mainArgs[i-2] = rawArgs[i];
+        Config.setCurrentDir(tempArgs[0]);
+        Config.setProjectDir(tempArgs[1]);
+        String[] mainArgs = new String[tempArgs.length - 2];
+        for(int i=2; i<tempArgs.length; i++){
+            mainArgs[i-2] = tempArgs[i];
         }
 
         Options opts = new Options();

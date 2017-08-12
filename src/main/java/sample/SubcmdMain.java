@@ -14,18 +14,21 @@ import sample.model.Model;
 public class SubcmdMain {
 
     public static void main(String[] rawArgs) throws Exception {
-        for (int i = 0; i < rawArgs.length; i++) {
-            putsf("raw arg %s (%s)", i, rawArgs[i]);
+        String allArgs = rawArgs[0];
+        String[] tempArgs = allArgs.split("\u001f");
+
+        for (int i = 0; i < tempArgs.length; i++) {
+            putsf("temp arg %s (%s)", i, tempArgs[i]);
         }
 
-        Config.setCurrentDir(rawArgs[0]);
-        Config.setProjectDir(rawArgs[1]);
-        String subcmd = rawArgs[2];
+        Config.setCurrentDir(tempArgs[0]);
+        Config.setProjectDir(tempArgs[1]);
+        String subcmd = tempArgs[2];
         putskv("subcmd", subcmd);
 
-        String[] mainArgs = new String[rawArgs.length - 3];
-        for (int i = 3; i < rawArgs.length; i++) {
-            mainArgs[i - 3] = rawArgs[i];
+        String[] mainArgs = new String[tempArgs.length - 3];
+        for (int i = 3; i < tempArgs.length; i++) {
+            mainArgs[i - 3] = tempArgs[i];
         }
 
         Options opts = new Options();
