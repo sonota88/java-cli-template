@@ -21,14 +21,14 @@ public class Main {
         String allArgs = rawArgs[0];
         String[] tempArgs = allArgs.split("\u001f");
 
-        for(int i=0; i<tempArgs.length; i++){
+        for (int i = 0; i < tempArgs.length; i++) {
             putsf("temp arg %s (%s)", i, tempArgs[i]);
         }
 
         Config.setCurrentDir(tempArgs[0]);
         Config.setProjectDir(tempArgs[1]);
         String[] mainArgs = new String[tempArgs.length - 2];
-        for(int i=2; i<tempArgs.length; i++){
+        for (int i = 2; i < tempArgs.length; i++) {
             mainArgs[i-2] = tempArgs[i];
         }
 
@@ -53,7 +53,7 @@ public class Main {
         puts(cl.hasOption("h"));
         puts(cl.hasOption("v"));
 
-        if(cl.hasOption("help")){
+        if (cl.hasOption("help")) {
             new HelpFormatter().printHelp("run_(mvn|gradle).sh", opts);
             System.exit(0);
         }

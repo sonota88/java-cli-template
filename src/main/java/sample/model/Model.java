@@ -6,13 +6,13 @@ import java.util.List;
 
 public class Model {
 
-    public static void main(List<String> args){
+    public static void main(List<String> args) {
         puts("-->> Model.main");
         puts(args);
         puts(add( Integer.valueOf(args.get(0)), Integer.valueOf(args.get(1)) ));
     }
 
-    static int add(int a, int b){
+    static int add(int a, int b) {
         return a + b;
     }
 
