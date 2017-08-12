@@ -8,15 +8,6 @@ _get_project_dir() {
   )
 }
 
-_exec() {
-  local args=$(_build_args "$@")
-
-  $MVN_CMD exec:java \
-    --quiet \
-    -Dexec.mainClass=sample.SubcmdMain \
-    "-Dexec.args=${args}"
-}
-
 
 # --------------------------------
 # Main
@@ -30,5 +21,5 @@ source "${PROJECT_DIR}/common.sh"
 if [ "$1" = "build" ] ; then
   _build_mvn
 else
-  _exec "${CURRENT_DIR}" "${PROJECT_DIR}" "$@"
+  _exec_mvn "sample.SubcmdMain" "${CURRENT_DIR}" "${PROJECT_DIR}" "$@"
 fi

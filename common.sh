@@ -22,7 +22,27 @@ _build_mvn() {
   $MVN_CMD compile
 }
 
+_exec_mvn() {
+  local main_class="$1"; shift
+  local args=$(_build_args "$@")
+
+  $MVN_CMD exec:java \
+    --quiet \
+    "-Dexec.mainClass=${main_class}" \
+    "-Dexec.args=${args}"
+}
+
 _build_gradle() {
   $GRADLE_CMD clean
   $GRADLE_CMD build
+}
+
+_exec_gradle() {
+  local main_class="$1"; shift
+  local args=$(_build_args "$@")
+
+  $GRADLE_CMD run \
+    --quiet \
+    "-DmainClassName=${main_class}" \
+    "-Pargs=${args}"
 }

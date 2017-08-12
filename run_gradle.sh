@@ -8,15 +8,6 @@ _get_project_dir() {
   )
 }
 
-_exec() {
-  local args=$(_build_args "$@")
-
-  $GRADLE_CMD run \
-    --quiet \
-    -DmainClassName=sample.Main \
-    "-Pargs=${args}"
-}
-
 
 # --------------------------------
 # Main
@@ -30,5 +21,5 @@ source "${PROJECT_DIR}/common.sh"
 if [ "$1" = "build" ] ; then
   _build_gradle
 else
-  _exec "${CURRENT_DIR}" "${PROJECT_DIR}" "$@"
+  _exec_gradle "sample.Main" "${CURRENT_DIR}" "${PROJECT_DIR}" "$@"
 fi
