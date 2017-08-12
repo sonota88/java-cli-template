@@ -17,7 +17,17 @@ import static sample.Config.prop;
 
 public class Main {
 
-    public static void main(String[] rawArgs) throws Exception {
+    public static void main(String[] rawArgs) {
+        try {
+            _main(rawArgs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    static void _main(String[] rawArgs) throws Exception {
+
         String allArgs = rawArgs[0];
         String[] tempArgs = allArgs.split("\u001f");
 
