@@ -72,7 +72,7 @@ public class SubcmdMain {
             break;
 
         default:
-            throw new IllegalAccessException("cmd (" + subcmd + ")");
+            throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }
     }
 
