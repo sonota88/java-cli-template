@@ -8,17 +8,6 @@ _get_project_dir() {
   )
 }
 
-_build_args(){
-  local args="$1"
-  shift
-
-  for arg in "$@"; do
-    args=$(printf "${args}${ARG_DELIM}${arg}")
-  done
-
-  printf "$args"
-}
-
 _build() {
   $GRADLE_CMD clean
   $GRADLE_CMD build
