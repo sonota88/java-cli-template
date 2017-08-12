@@ -6,7 +6,7 @@ MVN_CMD="mvn"
 _get_project_dir() {
   if [ -L $0 ] ; then
     # シンボリックリンク
-    dirname $(readlink $0)
+    dirname $(readlink --canonicalize $0)
   else
     echo $(cd $(dirname $0); pwd)
   fi
