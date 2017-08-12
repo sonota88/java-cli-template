@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# GRADLE_CMD="/path/to/gradle-x.x/bin/gradle"
-GRADLE_CMD="gradle"
-ARG_DELIM="\x1f"
-
 _get_project_dir() {
   local real_path="$(readlink --canonicalize "$0")"
   (

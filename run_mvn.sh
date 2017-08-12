@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# MVN_CMD="/path/to/apache-maven-x.x.x/bin/mvn"
-MVN_CMD="mvn"
-ARG_DELIM="\x1f"
-
 _get_project_dir() {
   local real_path="$(readlink --canonicalize "$0")"
   (
