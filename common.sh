@@ -16,3 +16,13 @@ _build_args(){
 
   printf "$args"
 }
+
+_build_mvn() {
+  $MVN_CMD clean
+  $MVN_CMD compile
+}
+
+_build_gradle() {
+  $GRADLE_CMD clean
+  $GRADLE_CMD build
+}

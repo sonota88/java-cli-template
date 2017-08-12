@@ -8,11 +8,6 @@ _get_project_dir() {
   )
 }
 
-_build() {
-  $GRADLE_CMD clean
-  $GRADLE_CMD build
-}
-
 _exec() {
   local args=$(_build_args "$@")
 
@@ -33,7 +28,7 @@ cd $PROJECT_DIR
 source "${PROJECT_DIR}/common.sh"
 
 if [ "$1" = "build" ] ; then
-  _build
+  _build_gradle
 else
   _exec "${CURRENT_DIR}" "${PROJECT_DIR}" "$@"
 fi
