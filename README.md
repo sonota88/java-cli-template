@@ -6,6 +6,13 @@ TODO
 
 TODO
 
+# サブコマンド
+
+## hexdump
+
+    ./run_subcmd hexdump {file}
+
+
 # ビルド
 
 ```

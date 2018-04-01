@@ -73,6 +73,21 @@ public class SubcmdMain {
             model.cmdB(cl.getOptionValue("b"), cl.getArgList());
             break;
 
+        case "cat":
+            opts.addOption("A", null, false, "Inspect");
+            cl = parser.parse(opts, mainArgs);
+
+            model.cat(cl.hasOption("A"));
+            break;
+
+        case "sort":
+            model.sort();
+            break;
+
+        case "hexdump":
+            model.hexdump(mainArgs[0]);
+            break;
+
         default:
             throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }
