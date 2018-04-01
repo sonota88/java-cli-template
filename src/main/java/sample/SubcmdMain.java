@@ -72,6 +72,16 @@ public class SubcmdMain {
             model.cmdB(cl.getOptionValue("b"), cl.getArgList());
             break;
 
+        case "cat":
+            cl = parser.parse(opts, mainArgs);
+
+            checkHelp(cl, opts);
+            setProfile(cl);
+            Config.load();
+
+            model.cat();
+            break;
+
         default:
             throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }

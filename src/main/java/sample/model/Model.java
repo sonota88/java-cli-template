@@ -3,6 +3,11 @@ package sample.model;
 import static util.Utils.puts;
 import static util.Utils.debug;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.List;
 
 public class Model {
@@ -30,4 +35,25 @@ public class Model {
         puts(optValB);
         puts(args);
     }
+
+    public void cat() {
+        try (
+                Reader r = new InputStreamReader(System.in);
+                Writer w = new OutputStreamWriter(System.out);
+                )
+        {
+            int c;
+
+            while (true) {
+                c = r.read();
+                if (c < 0) {
+                    break;
+                }
+                w.write(c);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
