@@ -32,7 +32,7 @@ public class Main {
         String[] tempArgs = allArgs.split("\u001f");
 
         for (int i = 0; i < tempArgs.length; i++) {
-            putsf("temp arg %s (%s)", i, tempArgs[i]);
+            putsf_e("temp arg %s (%s)", i, tempArgs[i]);
         }
 
         Config.setCurrentDir(tempArgs[0]);
@@ -54,14 +54,14 @@ public class Main {
         CommandLine cl = new DefaultParser().parse(opts, mainArgs);
 
         List<String> restArgs = cl.getArgList();
-        putskv("restArgs size", restArgs.size());
+        putskv_e("restArgs size", restArgs.size());
 
         for(int i=0; i<restArgs.size(); i++){
-            putsf("rest arg %s (%s)", i, restArgs.get(i));
+            putsf_e("rest arg %s (%s)", i, restArgs.get(i));
         }
 
-        puts(cl.hasOption("h"));
-        puts(cl.hasOption("v"));
+        puts_e(cl.hasOption("h"));
+        puts_e(cl.hasOption("v"));
 
         if (cl.hasOption("help")) {
             new HelpFormatter().printHelp("run_(mvn|gradle).sh", opts);
@@ -69,18 +69,18 @@ public class Main {
         }
 
         String content = readFile("README.md");
-        puts(content);
+        puts_e(content);
 
         if (cl.hasOption("env")) {
             setEnv(cl.getOptionValue("env"));
         } else {
             setEnv("devel");
         }
-        puts(getEnv());
+        puts_e(getEnv());
 
         Config.load();
 
-        puts(prop("foo.bar"));
+        puts_e(prop("foo.bar"));
 
         Model.main(restArgs);
     }
