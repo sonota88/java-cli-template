@@ -16,7 +16,7 @@ public class Config {
     /**
      * devel | test | prod
      */
-    private static String env;
+    private static String profile;
 
     @SuppressWarnings("unused")
     private static String currentDir;
@@ -28,12 +28,12 @@ public class Config {
         props = new Properties();
     }
 
-    public static String getEnv() {
-        return env;
+    public static String getProfile() {
+        return profile;
     }
 
-    public static void setEnv(String env) {
-        Config.env = env;
+    public static void setProfile(String profile) {
+        Config.profile = profile;
     }
 
     public static void setCurrentDir(String dir){
@@ -75,8 +75,8 @@ public class Config {
 
     public static void load() {
         String suffix = "";
-        if (!env.equals("prod")) {
-            suffix = "_" + env;
+        if (!profile.equals("prod")) {
+            suffix = "_" + profile;
         }
 
         String path = projectRelativePath("config" + suffix + ".properties");

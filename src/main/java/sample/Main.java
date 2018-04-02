@@ -11,8 +11,8 @@ import org.apache.commons.cli.Options;
 import sample.model.Model;
 
 import static util.Utils.*;
-import static sample.Config.setEnv;
-import static sample.Config.getEnv;
+import static sample.Config.setProfile;
+import static sample.Config.getProfile;
 import static sample.Config.prop;
 
 public class Main {
@@ -44,7 +44,7 @@ public class Main {
 
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");
-        opts.addOption(null, "env", true, "Environment");
+        opts.addOption(null, "profile", true, "Profile");
 
         opts.addOption(Option.builder("v")
                 .hasArg()
@@ -71,12 +71,12 @@ public class Main {
         String content = readFile("README.md");
         puts_e(content);
 
-        if (cl.hasOption("env")) {
-            setEnv(cl.getOptionValue("env"));
+        if (cl.hasOption("profile")) {
+            setProfile(cl.getOptionValue("profile"));
         } else {
-            setEnv("devel");
+            setProfile("devel");
         }
-        puts_e(getEnv());
+        puts_e(getProfile());
 
         Config.load();
 

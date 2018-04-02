@@ -49,11 +49,11 @@ public class SubcmdMain {
         switch (subcmd) {
         case "cmd_a":
             opts.addOption("f", "foo", false, "Option foo");
-            opts.addOption(null, "env", true, "Environment");
+            opts.addOption(null, "profile", true, "Profile");
             cl = parser.parse(opts, mainArgs);
 
             checkHelp(cl, opts);
-            setEnv(cl);
+            setProfile(cl);
             Config.load();
 
             Model.cmdA(cl.hasOption("f"), cl.getArgList());
@@ -61,11 +61,11 @@ public class SubcmdMain {
 
         case "cmd_b":
             opts.addOption("b", "bar", true, "Option bar");
-            opts.addOption(null, "env", true, "Environment");
+            opts.addOption(null, "profile", true, "Profile");
             cl = parser.parse(opts, mainArgs);
 
             checkHelp(cl, opts);
-            setEnv(cl);
+            setProfile(cl);
             Config.load();
 
             Model.cmdB(cl.getOptionValue("b"), cl.getArgList());
@@ -83,11 +83,11 @@ public class SubcmdMain {
         }
     }
 
-    private static void setEnv(CommandLine cl) {
-        if (cl.hasOption("env")) {
-            Config.setEnv(cl.getOptionValue("env"));
+    private static void setProfile(CommandLine cl) {
+        if (cl.hasOption("profile")) {
+            Config.setProfile(cl.getOptionValue("profile"));
         } else {
-            Config.setEnv("devel");
+            Config.setProfile("devel");
         }
 
     }
