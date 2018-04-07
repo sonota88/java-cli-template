@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
@@ -66,6 +67,88 @@ public class Model {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void sort() {
+        debug("cmd_sort");
+
+        List<String> lines = new ArrayList<>();
+
+        try (
+                Reader r = new InputStreamReader(System.in, "UTF-8");
+                )
+        {
+            int n;
+            List<Integer> buf = new ArrayList<>();
+
+            while (true) {
+                n = r.read();
+                if (n < 0) {
+                    break;
+                }
+                buf.add(n);
+                if (n == '\n') {
+                    lines.add(intListToString(buf));
+                    buf.clear();
+                }
+            }
+            lines.add(intListToString(buf));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        List<String> sorted = sortLines(lines);
+
+        for (String line : sorted) {
+            System.out.print(line);
+        }
+    }
+
+    private String intListToString(List<Integer> ns) {
+        char[] cs = new char[ns.size()];
+        for (int i = 0; i < ns.size(); i++) {
+            cs[i] = (char) ((int) ns.get(i));
+        }
+        return String.valueOf(cs);
+    }
+
+    private List<String> sortLines(List<String> lines){
+        String pivot = lines.get(0);
+        List<String> left = new ArrayList<>();
+        List<String> center = new ArrayList<>();
+        List<String> right = new ArrayList<>();
+
+        for (String line : lines) {
+            int cmp = line.compareTo(pivot);
+            if (cmp < 0) {
+                left.add(line);
+            } else if (cmp > 0) {
+                right.add(line);
+            } else {
+                center.add(line);
+            }
+        }
+
+        List<String> leftSorted = null;
+        if (left.size() >= 2) {
+            leftSorted = sortLines(left);
+        } else {
+            leftSorted = left;
+        }
+
+        List<String> rightSorted = null;
+        if (right.size() >= 2) {
+            rightSorted = sortLines(right);
+        } else {
+            rightSorted = right;
+        }
+
+        List<String> result = new ArrayList<>();
+        result.addAll(leftSorted);
+        result.addAll(center);
+        result.addAll(rightSorted);
+
+        return result;
     }
 
 }
