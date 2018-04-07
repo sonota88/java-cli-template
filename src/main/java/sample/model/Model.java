@@ -38,8 +38,8 @@ public class Model {
 
     public void cat() {
         try (
-                Reader r = new InputStreamReader(System.in);
-                Writer w = new OutputStreamWriter(System.out);
+                Reader r = new InputStreamReader(System.in, "UTF-8");
+                Writer w = new OutputStreamWriter(System.out, "UTF-8");
                 )
         {
             int c;
