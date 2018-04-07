@@ -80,6 +80,10 @@ public class SubcmdMain {
             model.cat(cl.hasOption("A"));
             break;
 
+        case "sort":
+            model.sort();
+            break;
+
         default:
             throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }
