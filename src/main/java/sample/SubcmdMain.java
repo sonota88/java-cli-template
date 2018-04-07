@@ -73,13 +73,10 @@ public class SubcmdMain {
             break;
 
         case "cat":
+            opts.addOption("A", null, false, "Inspect");
             cl = parser.parse(opts, mainArgs);
 
-            checkHelp(cl, opts);
-            setProfile(cl);
-            Config.load();
-
-            model.cat();
+            model.cat(cl.hasOption("A"));
             break;
 
         default:
