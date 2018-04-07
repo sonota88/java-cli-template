@@ -72,6 +72,15 @@ public class Model {
     public void sort() {
         debug("cmd_sort");
 
+        List<String> lines = readAllLines();
+        List<String> sorted = sortLines(lines);
+
+        for (String line : sorted) {
+            System.out.print(line);
+        }
+    }
+
+    private List<String> readAllLines() {
         List<String> lines = new ArrayList<>();
 
         try (
@@ -97,11 +106,7 @@ public class Model {
             throw new RuntimeException(e);
         }
 
-        List<String> sorted = sortLines(lines);
-
-        for (String line : sorted) {
-            System.out.print(line);
-        }
+        return lines;
     }
 
     private String intListToString(List<Integer> ns) {
