@@ -36,7 +36,7 @@ public class Model {
         puts(args);
     }
 
-    public void cat() {
+    public void cat(boolean isInspect) {
         try (
                 Reader r = new InputStreamReader(System.in, "UTF-8");
                 Writer w = new OutputStreamWriter(System.out, "UTF-8");
@@ -49,7 +49,19 @@ public class Model {
                 if (c < 0) {
                     break;
                 }
-                w.write(c);
+                if (isInspect) {
+                    if (c == '\t') {
+                        w.write("^I");
+                    } else if (c == '\r') {
+                        w.write("^M");
+                    } else if (c == '\n') {
+                        w.write("$\n");
+                    } else {
+                        w.write(c);
+                    }
+                } else {
+                    w.write(c);
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
