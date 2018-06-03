@@ -11,6 +11,8 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class Config {
 
     /**
@@ -24,8 +26,14 @@ public class Config {
 
     private static Properties props;
 
+    private static boolean isDebug;
+
     static {
         props = new Properties();
+
+        if (StringUtils.equals(System.getenv("DEBUG"), "1")) {
+            isDebug = true;
+        }
     }
 
     public static String getProfile() {
@@ -103,4 +111,9 @@ public class Config {
             throw new RuntimeException(t);
         }
     }
+
+    public static boolean isDebug(){
+        return isDebug;
+    }
+
 }
