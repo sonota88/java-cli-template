@@ -7,6 +7,12 @@ import org.apache.commons.io.FileUtils;
 
 public class Utils {
 
+    public static void print(Object ... os){
+        for(Object o : os){
+            System.out.print(o);
+        }
+    }
+
     public static void puts(Object ... os){
         for(Object o : os){
             System.out.println(o);
