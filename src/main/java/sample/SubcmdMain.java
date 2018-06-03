@@ -46,6 +46,8 @@ public class SubcmdMain {
         CommandLineParser parser = new DefaultParser();
         CommandLine cl;
 
+        Model model = createModel();
+
         switch (subcmd) {
         case "cmd_a":
             opts.addOption("f", "foo", false, "Option foo");
@@ -56,7 +58,7 @@ public class SubcmdMain {
             setProfile(cl);
             Config.load();
 
-            Model.cmdA(cl.hasOption("f"), cl.getArgList());
+            model.cmdA(cl.hasOption("f"), cl.getArgList());
             break;
 
         case "cmd_b":
@@ -68,7 +70,7 @@ public class SubcmdMain {
             setProfile(cl);
             Config.load();
 
-            Model.cmdB(cl.getOptionValue("b"), cl.getArgList());
+            model.cmdB(cl.getOptionValue("b"), cl.getArgList());
             break;
 
         default:
@@ -90,6 +92,10 @@ public class SubcmdMain {
             Config.setProfile("devel");
         }
 
+    }
+
+    private static Model createModel() {
+        return new Model();
     }
 
 }

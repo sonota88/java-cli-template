@@ -6,24 +6,24 @@ import java.util.List;
 
 public class Model {
 
-    public static void main(List<String> args) {
+    public void main(List<String> args) {
         puts("-->> Model.main");
         puts(args);
         puts(add( Integer.valueOf(args.get(0)), Integer.valueOf(args.get(1)) ));
     }
 
-    static int add(int a, int b) {
+    int add(int a, int b) {
         return a + b;
     }
 
-    public static void cmdA(Boolean hasOptF, List<String> args) {
+    public void cmdA(Boolean hasOptF, List<String> args) {
 
         puts("cmd_1");
         puts(hasOptF);
         puts(args);
     }
 
-    public static void cmdB(String optValB, List<String> args) {
+    public void cmdB(String optValB, List<String> args) {
 
         puts("cmd_2");
         puts(optValB);

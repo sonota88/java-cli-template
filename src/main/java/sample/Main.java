@@ -82,7 +82,11 @@ public class Main {
 
         puts_e(prop("foo.bar"));
 
-        Model.main(restArgs);
+        createModel().main(restArgs);
+    }
+
+    private static Model createModel() {
+        return new Model();
     }
 
 }
