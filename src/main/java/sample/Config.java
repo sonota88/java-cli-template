@@ -63,11 +63,11 @@ public class Config {
         Pattern p = Pattern.compile(restr);
         Matcher m = p.matcher(target);
         if (m.find()) {
-            List<String> ss = new ArrayList<>();
+            List<String> groups = new ArrayList<>();
             for (int i = 0; i <= m.groupCount(); i++) {
-                ss.add(m.group(i));
+                groups.add(m.group(i));
             }
-            return ss;
+            return groups;
         } else {
             return Collections.emptyList();
         }
