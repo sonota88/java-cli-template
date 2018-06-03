@@ -7,6 +7,8 @@ import org.apache.commons.io.FileUtils;
 
 public class Utils {
 
+    private static final String LF = "\n";
+
     public static void print(Object ... os){
         for(Object o : os){
             System.out.print(o);
@@ -15,13 +17,13 @@ public class Utils {
 
     public static void puts(Object ... os){
         for(Object o : os){
-            System.out.println(o);
+            System.out.print(o + LF);
         }
     }
 
     public static void puts_e(Object ... os){
         for(Object o : os){
-            System.err.println(o);
+            System.err.print(o + LF);
         }
     }
 
