@@ -1,7 +1,6 @@
 package sample.model;
 
-import static util.Utils.puts;
-import static util.Utils.debug;
+import static util.Utils.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +9,8 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+
+import sample.model.command.Hexdump;
 
 public class Model {
 
@@ -154,6 +155,11 @@ public class Model {
         result.addAll(rightSorted);
 
         return result;
+    }
+
+    public void hexdump(String path) {
+        Hexdump cmd = new Hexdump();
+        cmd.exec(path);
     }
 
 }

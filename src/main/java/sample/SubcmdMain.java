@@ -83,6 +83,10 @@ public class SubcmdMain {
             model.sort();
             break;
 
+        case "hexdump":
+            model.hexdump(mainArgs[0]);
+            break;
+
         default:
             throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }
