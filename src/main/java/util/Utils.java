@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 
+import sample.Config;
+
 public class Utils {
 
     private static final String LF = "\n";
@@ -41,6 +43,12 @@ public class Utils {
 
     public static void putsf_e(String format, Object... args) {
         puts_e(fmt(format, args));
+    }
+
+    public static void debug(Object... os) {
+        if (Config.isDebug()) {
+            puts_e(os);
+        }
     }
 
     public static String readFile(String path) {
