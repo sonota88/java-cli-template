@@ -1,13 +1,14 @@
 package sample.model;
 
 import static util.Utils.puts;
+import static util.Utils.debug;
 
 import java.util.List;
 
 public class Model {
 
     public void main(List<String> args) {
-        puts("-->> Model.main");
+        debug("-->> Model.main");
         puts(args);
         puts(add( Integer.valueOf(args.get(0)), Integer.valueOf(args.get(1)) ));
     }

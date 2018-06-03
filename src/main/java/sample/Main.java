@@ -60,8 +60,8 @@ public class Main {
             putsf_e("rest arg %s (%s)", i, restArgs.get(i));
         }
 
-        puts_e(cl.hasOption("h"));
-        puts_e(cl.hasOption("v"));
+        debug(cl.hasOption("h"));
+        debug(cl.hasOption("v"));
 
         if (cl.hasOption("help")) {
             new HelpFormatter().printHelp("run_(mvn|gradle).sh", opts);
@@ -69,18 +69,18 @@ public class Main {
         }
 
         String content = readFile("README.md");
-        puts_e(content);
+        debug(content);
 
         if (cl.hasOption("profile")) {
             setProfile(cl.getOptionValue("profile"));
         } else {
             setProfile("devel");
         }
-        puts_e(getProfile());
+        debug(getProfile());
 
         Config.load();
 
-        puts_e(prop("foo.bar"));
+        debug(prop("foo.bar"));
 
         createModel().main(restArgs);
     }

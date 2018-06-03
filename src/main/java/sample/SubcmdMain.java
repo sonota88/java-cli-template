@@ -1,7 +1,6 @@
 package sample;
 
-import static util.Utils.putsf_e;
-import static util.Utils.putskv_e;
+import static util.Utils.*;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -27,13 +26,13 @@ public class SubcmdMain {
         String[] tempArgs = allArgs.split("\u001f");
 
         for (int i = 0; i < tempArgs.length; i++) {
-            putsf_e("temp arg %s (%s)", i, tempArgs[i]);
+            debug(fmt("temp arg %s (%s)", i, tempArgs[i]));
         }
 
         Config.setCurrentDir(tempArgs[0]);
         Config.setProjectDir(tempArgs[1]);
         String subcmd = tempArgs[2];
-        putskv_e("subcmd", subcmd);
+        debug(fmt("subcmd (%s)", subcmd));
 
         String[] mainArgs = new String[tempArgs.length - 3];
         for (int i = 3; i < tempArgs.length; i++) {
