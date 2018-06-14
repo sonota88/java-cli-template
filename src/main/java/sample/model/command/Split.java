@@ -36,7 +36,7 @@ public class Split {
     private void copyRange(String infile, String outfile, Range range) {
         try (
                 InputStream is = new FileInputStream(new File(infile));
-                Reader r = new InputStreamReader(is, "UTF-8");
+                Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(r);
         ) {
             puts("---- " + range);
