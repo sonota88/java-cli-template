@@ -10,6 +10,10 @@ public class Split {
     }
 
     List<Range> generateRanges(int total, int div) {
+        if (div <= 0) {
+            throw new IllegalArgumentException("div must be positive");
+        }
+
         int blockSize = calcNumLinesForRange(total, div);
         List<Range> ranges = new ArrayList<>();
         for (int di = 0; di < div; di++) {
@@ -26,6 +30,9 @@ public class Split {
     }
 
     int calcNumLinesForRange(int total, int div) {
+        if (div <= 0) {
+            throw new IllegalArgumentException("div must be positive");
+        }
         if (total % div == 0) {
             return total / div;
         } else {
