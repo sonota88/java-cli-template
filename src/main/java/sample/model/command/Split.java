@@ -52,7 +52,13 @@ public class Split {
                 this.to = to;
             } else {
                 // invalid
+                this.from = null;
+                this.to = null;
             }
+        }
+
+        public boolean isInvalid() {
+            return from == null;
         }
 
     }
