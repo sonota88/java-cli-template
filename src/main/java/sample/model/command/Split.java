@@ -25,11 +25,9 @@ public class Split {
         int total = countLines(file);
         List<Range> ranges = generateRanges(total, div);
 
-        int oi = -1; // output index
-        for (Range range : ranges) {
-            oi++;
-            String outfile = String.format("split_%04d", oi + 1);
-            copyRange(file, outfile, range);
+        for (int i = 0; i < ranges.size(); i++) {
+            String outfile = String.format("split_%04d", i + 1);
+            copyRange(file, outfile, ranges.get(i));
         }
     }
 
