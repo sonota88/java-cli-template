@@ -7,6 +7,9 @@ public class Split {
 
     public void exec(String file, int div) {
 
+    private int countLines(String file) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 
     List<Range> generateRanges(int total, int div) {
