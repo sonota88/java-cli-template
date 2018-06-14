@@ -103,6 +103,11 @@ public class Split {
             return from != null;
         }
 
+        @Override
+        public String toString() {
+            return Utils.toString(this);
+        }
+
     }
 
 }
