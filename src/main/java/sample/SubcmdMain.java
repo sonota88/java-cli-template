@@ -87,6 +87,12 @@ public class SubcmdMain {
             model.hexdump(mainArgs[0]);
             break;
 
+        case "split":
+            String file = mainArgs[0];
+            int div = Integer.valueOf(mainArgs[1]);
+            model.split(file, div);
+            break;
+
         default:
             throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }
