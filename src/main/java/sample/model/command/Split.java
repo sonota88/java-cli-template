@@ -90,9 +90,10 @@ public class Split {
 
         int blockSize = calcBlockSize(total, div);
         List<Range> ranges = new ArrayList<>();
-        for (int di = 0; di < div; di++) {
-            int offset = di * blockSize;
-            int nextOffset = (di + 1) * blockSize;
+
+        for (int i = 0; i < div; i++) {
+            int offset = i * blockSize;
+            int nextOffset = (i + 1) * blockSize;
             int from = offset + 1;
             int to = nextOffset;
             if (to > total) {
@@ -100,6 +101,7 @@ public class Split {
             }
             ranges.add(new Range(from, to));
         }
+
         return ranges;
     }
 
@@ -107,6 +109,7 @@ public class Split {
         if (div <= 0) {
             throw new IllegalArgumentException("div must be positive");
         }
+
         if (total % div == 0) {
             return total / div;
         } else {
