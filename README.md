@@ -12,6 +12,10 @@ TODO
 
     ./run_subcmd hexdump {file}
 
+## split
+
+    ./run_subcmd split {file} {div}
+
 
 # ビルド
 

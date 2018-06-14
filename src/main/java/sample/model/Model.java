@@ -12,6 +12,7 @@ import java.util.List;
 
 import sample.model.command.Hexdump;
 import sample.model.command.Sort;
+import sample.model.command.Split;
 
 public class Model {
 
@@ -81,6 +82,11 @@ public class Model {
     public void hexdump(String path) {
         Hexdump cmd = new Hexdump();
         cmd.exec(path);
+    }
+
+    public void split(String file, int div) {
+        Split cmd = new Split();
+        cmd.exec(file, div);
     }
 
 }
