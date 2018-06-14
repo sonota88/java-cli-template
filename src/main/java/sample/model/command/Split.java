@@ -1,5 +1,7 @@
 package sample.model.command;
 
+import static util.Utils.*;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +26,8 @@ public class Split {
                     Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
                     BufferedReader br = new BufferedReader(r);
             ) {
+                puts("----");
+                puts(range);
                 int ln = 0;
                 while (true) {
                     ln += 1;
@@ -32,7 +36,7 @@ public class Split {
                         break;
                     }
                     if (range.contains(ln)) {
-                        // write
+                        putsf("%d: %s", ln, line);
                     }
                 }
             } catch (Exception e) {
