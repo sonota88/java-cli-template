@@ -24,40 +24,44 @@ public class Split {
     public void exec(String file, int div) {
         int total = countLines(file);
         List<Range> ranges = generateRanges(total, div);
+
         int oi = -1; // output index
         for (Range range : ranges) {
             oi++;
-            try (
-                    InputStream is = new FileInputStream(new File(file));
-                    Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
-                    BufferedReader br = new BufferedReader(r);
-            ) {
-                puts("----");
-                puts(range);
-                String outfile = String.format("split_%04d", oi + 1);
+            String outfile = String.format("split_%04d", oi + 1);
+            copyRange(file, outfile, range);
+        }
+    }
 
-                try (
-                        OutputStream os = new FileOutputStream(new File(outfile));
-                        Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8);
-                        BufferedWriter bw = new BufferedWriter(w);
-                        ) {
-                    int ln = 0;
-                    while (true) {
-                        ln++;
-                        String line = br.readLine();
-                        if (line == null) {
-                            break;
-                        }
-                        if (range.contains(ln)) {
-                            putsf("%d: %s", ln, line);
-                            bw.write(line + "\n");
-                        }
+    private void copyRange(String infile, String outfile, Range range) {
+        try (
+                InputStream is = new FileInputStream(new File(infile));
+                Reader r = new InputStreamReader(is, "UTF-8");
+                BufferedReader br = new BufferedReader(r);
+        ) {
+            puts("---- " + range);
+
+            try (
+                    OutputStream os = new FileOutputStream(new File(outfile));
+                    Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+                    BufferedWriter bw = new BufferedWriter(w);
+                    ) {
+                int ln = 0;
+                while (true) {
+                    ln++;
+                    String line = br.readLine();
+                    if (line == null) {
+                        break;
+                    }
+                    if (range.contains(ln)) {
+                        // putsf("%d: %s", ln, line);
+                        bw.write(line + "\n");
                     }
                 }
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
