@@ -57,6 +57,13 @@ public class Split {
             }
         }
 
+        public boolean contains(int n) {
+            if (!isValid()) {
+                return false;
+            }
+            return this.from <= n && n <= this.to;
+        }
+
         public boolean isValid() {
             return from != null;
         }
