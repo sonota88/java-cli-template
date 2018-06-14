@@ -37,7 +37,7 @@ public class Split {
                 Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(r);
         ) {
-            puts("---- " + range);
+            debug(range);
 
             try (
                     OutputStream os = new FileOutputStream(new File(outfile));
@@ -52,7 +52,6 @@ public class Split {
                         break;
                     }
                     if (range.contains(ln)) {
-                        // putsf("%d: %s", ln, line);
                         bw.write(line + "\n");
                     }
                 }
