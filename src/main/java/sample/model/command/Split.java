@@ -36,24 +36,23 @@ public class Split {
                 InputStream is = new FileInputStream(new File(infile));
                 Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(r);
-        ) {
+
+                OutputStream os = new FileOutputStream(new File(outfile));
+                Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8);
+                BufferedWriter bw = new BufferedWriter(w);
+                )
+        {
             debug(range);
 
-            try (
-                    OutputStream os = new FileOutputStream(new File(outfile));
-                    Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8);
-                    BufferedWriter bw = new BufferedWriter(w);
-                    ) {
-                int ln = 0;
-                while (true) {
-                    ln++;
-                    String line = br.readLine();
-                    if (line == null) {
-                        break;
-                    }
-                    if (range.contains(ln)) {
-                        bw.write(line + "\n");
-                    }
+            int ln = 0;
+            while (true) {
+                ln++;
+                String line = br.readLine();
+                if (line == null) {
+                    break;
+                }
+                if (range.contains(ln)) {
+                    bw.write(line + "\n");
                 }
             }
 
