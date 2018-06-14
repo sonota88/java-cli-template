@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import sample.Config;
 
@@ -61,6 +63,11 @@ public class Utils {
 
     public static String fmt(String format, Object... args) {
         return String.format(format, args);
+    }
+
+    public static String toString(Object obj) {
+        // return ReflectionToStringBuilder.toString(obj, ToStringStyle.JSON_STYLE);
+        return ReflectionToStringBuilder.toString(obj, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
 }
