@@ -1,6 +1,6 @@
 package sample.model.command;
 
-import static util.Utils.*;
+import static util.Utils.debug;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
