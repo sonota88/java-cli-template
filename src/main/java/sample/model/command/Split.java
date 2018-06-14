@@ -1,9 +1,28 @@
 package sample.model.command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Split {
 
     public void exec(String file, int div) {
 
+    }
+
+    List<Range> generateRanges(int total, int div) {
+        int blockSize = calcNumLinesForRange(total, div);
+        List<Range> ranges = new ArrayList<>();
+        for (int di = 0; di < div; di++) {
+            int offset = di * blockSize;
+            int nextOffset = (di + 1) * blockSize;
+            int from = offset + 1;
+            int to = nextOffset;
+            if (to > total) {
+                to = total;
+            }
+            ranges.add(new Range(from, to));
+        }
+        return ranges;
     }
 
     int calcNumLinesForRange(int total, int div) {
