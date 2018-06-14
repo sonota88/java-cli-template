@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import util.Utils;
+
 public class Split {
 
     public void exec(String file, int div) {
@@ -40,8 +42,25 @@ public class Split {
     }
 
     private int countLines(String file) {
-        // TODO Auto-generated method stub
-        return 0;
+        int ln = 0;
+
+        try (
+                InputStream is = new FileInputStream(new File(file));
+                Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(r);
+        ) {
+            while (true) {
+                String line = br.readLine();
+                if (line == null) {
+                    break;
+                }
+                ln += 1;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return ln;
     }
 
     List<Range> generateRanges(int total, int div) {
