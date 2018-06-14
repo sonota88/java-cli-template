@@ -20,11 +20,11 @@ public class Split {
         Integer to;
 
         Range(int from, int to) {
-            if(from <= to){
+            if (from <= to) {
                 // valid
                 this.from = from;
                 this.to = to;
-            }else {
+            } else {
                 // invalid
             }
         }
