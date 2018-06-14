@@ -7,7 +7,11 @@ public class Split {
     }
 
     int calcNumLinesForRange(int total, int div) {
-        return 0;
+        if (total % div == 0) {
+            return total / div;
+        } else {
+            return (total / div) + 1;
+        }
     }
 
     class Range {
