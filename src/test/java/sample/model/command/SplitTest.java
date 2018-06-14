@@ -161,10 +161,10 @@ public class SplitTest {
     }
 
     String dumpRange(Range r) {
-        if (r.isInvalid()) {
-            return "()";
-        } else {
+        if (r.isValid()) {
             return String.format("(%s %s)", r.from, r.to);
+        } else {
+            return "()";
         }
     }
 

@@ -57,8 +57,8 @@ public class Split {
             }
         }
 
-        public boolean isInvalid() {
-            return from == null;
+        public boolean isValid() {
+            return from != null;
         }
 
     }
