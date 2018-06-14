@@ -72,7 +72,7 @@ public class Split {
             throw new IllegalArgumentException("div must be positive");
         }
 
-        int blockSize = calcNumLinesForRange(total, div);
+        int blockSize = calcBlockSize(total, div);
         List<Range> ranges = new ArrayList<>();
         for (int di = 0; di < div; di++) {
             int offset = di * blockSize;
@@ -87,7 +87,7 @@ public class Split {
         return ranges;
     }
 
-    int calcNumLinesForRange(int total, int div) {
+    int calcBlockSize(int total, int div) {
         if (div <= 0) {
             throw new IllegalArgumentException("div must be positive");
         }
