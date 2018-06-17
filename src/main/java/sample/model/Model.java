@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sample.model.command.Hexdump;
+import sample.io.BufferedReaderWrapper;
 
 public class Model {
 
@@ -86,36 +87,22 @@ public class Model {
 
         try (
                 Reader r = new InputStreamReader(System.in, "UTF-8");
+                BufferedReaderWrapper brw = new BufferedReaderWrapper(r, '\n');
                 )
         {
-            int n;
-            List<Integer> buf = new ArrayList<>();
-
+            String line;
             while (true) {
-                n = r.read();
-                if (n < 0) {
+                line = brw.readLineWithNewline();
+                if (line == null) {
                     break;
                 }
-                buf.add(n);
-                if (n == '\n') {
-                    lines.add(intListToString(buf));
-                    buf.clear();
-                }
+                lines.add(line);
             }
-            lines.add(intListToString(buf));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         return lines;
-    }
-
-    private String intListToString(List<Integer> ns) {
-        char[] cs = new char[ns.size()];
-        for (int i = 0; i < ns.size(); i++) {
-            cs[i] = (char) ((int) ns.get(i));
-        }
-        return String.valueOf(cs);
     }
 
     private List<String> sortLines(List<String> lines){
