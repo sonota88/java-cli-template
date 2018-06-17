@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import sample.model.command.Hexdump;
@@ -40,8 +41,8 @@ public class Model {
 
     public void cat(boolean isInspect) {
         try (
-                Reader r = new InputStreamReader(System.in, "UTF-8");
-                Writer w = new OutputStreamWriter(System.out, "UTF-8");
+                Reader r = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+                Writer w = new OutputStreamWriter(System.out, StandardCharsets.UTF_8);
                 )
         {
             int c;

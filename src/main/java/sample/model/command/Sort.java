@@ -5,6 +5,7 @@ import static util.Utils.debug;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class Sort {
         List<String> lines = new ArrayList<>();
 
         try (
-                Reader r = new InputStreamReader(System.in, "UTF-8");
+                Reader r = new InputStreamReader(System.in, StandardCharsets.UTF_8);
                 BufferedReaderWrapper brw = new BufferedReaderWrapper(r, '\n');
                 )
         {
