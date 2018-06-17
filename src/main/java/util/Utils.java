@@ -2,12 +2,18 @@ package util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import sample.Config;
+import sample.io.BufferedReaderWrapper;
 
 public class Utils {
 
@@ -68,6 +74,29 @@ public class Utils {
     public static String toString(Object obj) {
         // return ReflectionToStringBuilder.toString(obj, ToStringStyle.JSON_STYLE);
         return ReflectionToStringBuilder.toString(obj, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+    public static List<String> readAllLines(InputStream is) {
+        List<String> lines = new ArrayList<>();
+
+        try (
+                Reader r = new InputStreamReader(is, "UTF-8");
+                BufferedReaderWrapper brw = new BufferedReaderWrapper(r, '\n');
+                )
+        {
+            String line;
+            while (true) {
+                line = brw.readLineWithNewline();
+                if (line == null) {
+                    break;
+                }
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return lines;
     }
 
 }
