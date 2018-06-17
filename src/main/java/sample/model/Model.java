@@ -7,10 +7,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 
 import sample.model.command.Hexdump;
+import sample.model.command.Sort;
 
 public class Model {
 
@@ -73,51 +73,8 @@ public class Model {
     public void sort() {
         debug("cmd_sort");
 
-        List<String> lines = readAllLines(System.in);
-        List<String> sorted = sortLines(lines);
-
-        for (String line : sorted) {
-            System.out.print(line);
-        }
-    }
-
-    private List<String> sortLines(List<String> lines){
-        String pivot = lines.get(0);
-        List<String> left = new ArrayList<>();
-        List<String> center = new ArrayList<>();
-        List<String> right = new ArrayList<>();
-
-        for (String line : lines) {
-            int cmp = line.compareTo(pivot);
-            if (cmp < 0) {
-                left.add(line);
-            } else if (cmp > 0) {
-                right.add(line);
-            } else {
-                center.add(line);
-            }
-        }
-
-        List<String> leftSorted = null;
-        if (left.size() >= 2) {
-            leftSorted = sortLines(left);
-        } else {
-            leftSorted = left;
-        }
-
-        List<String> rightSorted = null;
-        if (right.size() >= 2) {
-            rightSorted = sortLines(right);
-        } else {
-            rightSorted = right;
-        }
-
-        List<String> result = new ArrayList<>();
-        result.addAll(leftSorted);
-        result.addAll(center);
-        result.addAll(rightSorted);
-
-        return result;
+        Sort cmd = new Sort();
+        cmd.exec();
     }
 
     public void hexdump(String path) {
