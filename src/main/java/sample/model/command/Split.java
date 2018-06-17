@@ -2,7 +2,6 @@ package sample.model.command;
 
 import static util.Utils.debug;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import sample.io.BufferedReaderWrapper;
 import util.Utils;
 
 public class Split {
@@ -35,7 +35,7 @@ public class Split {
         try (
                 InputStream is = new FileInputStream(new File(infile));
                 Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
-                BufferedReader br = new BufferedReader(r);
+                BufferedReaderWrapper brw = new BufferedReaderWrapper(r, '\n');
 
                 OutputStream os = new FileOutputStream(new File(outfile));
                 Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8);
@@ -47,12 +47,12 @@ public class Split {
             int ln = 0;
             while (true) {
                 ln++;
-                String line = br.readLine();
+                String line = brw.readLineWithNewline();
                 if (line == null) {
                     break;
                 }
                 if (range.contains(ln)) {
-                    bw.write(line + "\n");
+                    bw.write(line);
                 }
             }
 
@@ -67,10 +67,10 @@ public class Split {
         try (
                 InputStream is = new FileInputStream(new File(file));
                 Reader r = new InputStreamReader(is, StandardCharsets.UTF_8);
-                BufferedReader br = new BufferedReader(r);
+                BufferedReaderWrapper brw = new BufferedReaderWrapper(r, '\n');
         ) {
             while (true) {
-                String line = br.readLine();
+                String line = brw.readLineWithNewline();
                 if (line == null) {
                     break;
                 }
