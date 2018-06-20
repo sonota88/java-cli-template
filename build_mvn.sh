@@ -11,12 +11,12 @@ _get_project_dir() {
 
 # --------------------------------
 
-_build_mvn() {
+_mvn_compile() {
   $MVN_CMD clean
   $MVN_CMD compile
 }
 
-_package_mvn() {
+_mvn_package() {
   $MVN_CMD clean
   $MVN_CMD package -Dmaven.test.skip=true
 
@@ -37,11 +37,11 @@ cd $PROJECT_DIR
 source "${PROJECT_DIR}/common.sh"
 
 case "$1" in
-  build)
-    _build_mvn
+  compile)
+    _mvn_compile
     ;;
   package)
-    _package_mvn
+    _mvn_package
     ;;
   *)
     echo "invalid argument" >&2
