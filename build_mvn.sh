@@ -16,6 +16,16 @@ _build_mvn() {
   $MVN_CMD compile
 }
 
+_package_mvn() {
+  $MVN_CMD clean
+  $MVN_CMD package -Dmaven.test.skip=true
+
+  echo "----"
+  ls -l target/*.jar
+  echo "----"
+  ls -lh target/*.jar
+}
+
 
 # --------------------------------
 # Main
@@ -29,6 +39,9 @@ source "${PROJECT_DIR}/common.sh"
 case "$1" in
   build)
     _build_mvn
+    ;;
+  package)
+    _package_mvn
     ;;
   *)
     echo "invalid argument" >&2
