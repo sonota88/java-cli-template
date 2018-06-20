@@ -10,6 +10,14 @@ _get_project_dir() {
 
 
 # --------------------------------
+
+_build_mvn() {
+  $MVN_CMD clean
+  $MVN_CMD compile
+}
+
+
+# --------------------------------
 # Main
 
 CURRENT_DIR=$(pwd)
@@ -18,4 +26,11 @@ cd $PROJECT_DIR
 
 source "${PROJECT_DIR}/common.sh"
 
-_exec_mvn "sample.SubcmdMain" "${CURRENT_DIR}" "${PROJECT_DIR}" "$@"
+case "$1" in
+  build)
+    _build_mvn
+    ;;
+  *)
+    echo "invalid argument" >&2
+    ;;
+esac

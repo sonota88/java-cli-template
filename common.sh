@@ -17,11 +17,6 @@ _build_args(){
   printf "$args"
 }
 
-_build_mvn() {
-  $MVN_CMD clean
-  $MVN_CMD compile
-}
-
 _exec_mvn() {
   local main_class="$1"; shift
   local args=$(_build_args "$@")
