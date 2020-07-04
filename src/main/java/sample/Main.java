@@ -1,5 +1,6 @@
 package sample;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
@@ -29,15 +30,15 @@ public class Main {
     static void _main(String[] rawArgs) throws Exception {
 
         String allArgs = rawArgs[0];
-        String[] tempArgs = allArgs.split("\u001f");
+        List<String> tempArgs = Arrays.asList(allArgs.split("\u001f"));
 
-        for (int i = 0; i < tempArgs.length; i++) {
-            putsf_e("temp arg %s (%s)", i, tempArgs[i]);
+        for (int i = 0; i < tempArgs.size(); i++) {
+            putsf_e("temp arg %s (%s)", i, tempArgs.get(i));
         }
 
         Config.setCurrentDir(System.getenv("CURRENT_DIR"));
         Config.setProjectDir(System.getenv("PROJECT_DIR"));
-        String[] mainArgs = tempArgs;
+        List<String> mainArgs = tempArgs;
 
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");
@@ -48,7 +49,7 @@ public class Main {
                 .desc("Print version")
                 .build());
 
-        CommandLine cl = new DefaultParser().parse(opts, mainArgs);
+        CommandLine cl = new DefaultParser().parse(opts, toArray(mainArgs));
 
         List<String> restArgs = cl.getArgList();
         putskv_e("restArgs size", restArgs.size());

@@ -2,6 +2,10 @@ package sample;
 
 import static util.Utils.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -23,20 +27,20 @@ public class SubcmdMain {
 
     static void _main(String[] rawArgs) throws Exception {
         String allArgs = rawArgs[0];
-        String[] tempArgs = allArgs.split("\u001f");
+        List<String> tempArgs = Arrays.asList(allArgs.split("\u001f"));
 
-        for (int i = 0; i < tempArgs.length; i++) {
-            debug(fmt("temp arg %s (%s)", i, tempArgs[i]));
+        for (int i = 0; i < tempArgs.size(); i++) {
+            debug(fmt("temp arg %s (%s)", i, tempArgs.get(i)));
         }
 
         Config.setCurrentDir(System.getenv("CURRENT_DIR"));
         Config.setProjectDir(System.getenv("PROJECT_DIR"));
-        String subcmd = tempArgs[0];
+        String subcmd = tempArgs.get(0);
         debug(fmt("subcmd (%s)", subcmd));
 
-        String[] mainArgs = new String[tempArgs.length - 1];
-        for (int i = 1; i < tempArgs.length; i++) {
-            mainArgs[i - 1] = tempArgs[i];
+        List<String> mainArgs = new ArrayList<>();
+        for (int i = 1; i < tempArgs.size(); i++) {
+            mainArgs.add(tempArgs.get(i));
         }
 
         Options opts = new Options();
@@ -51,7 +55,7 @@ public class SubcmdMain {
         case "cmd_a":
             opts.addOption("f", "foo", false, "Option foo");
             opts.addOption(null, "profile", true, "Profile");
-            cl = parser.parse(opts, mainArgs);
+            cl = parser.parse(opts, toArray(mainArgs));
 
             checkHelp(cl, opts);
             setProfile(cl);
@@ -63,7 +67,7 @@ public class SubcmdMain {
         case "cmd_b":
             opts.addOption("b", "bar", true, "Option bar");
             opts.addOption(null, "profile", true, "Profile");
-            cl = parser.parse(opts, mainArgs);
+            cl = parser.parse(opts, toArray(mainArgs));
 
             checkHelp(cl, opts);
             setProfile(cl);
