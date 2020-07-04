@@ -35,12 +35,9 @@ public class Main {
             putsf_e("temp arg %s (%s)", i, tempArgs[i]);
         }
 
-        Config.setCurrentDir(tempArgs[0]);
-        Config.setProjectDir(tempArgs[1]);
-        String[] mainArgs = new String[tempArgs.length - 2];
-        for (int i = 2; i < tempArgs.length; i++) {
-            mainArgs[i-2] = tempArgs[i];
-        }
+        Config.setCurrentDir(System.getenv("CURRENT_DIR"));
+        Config.setProjectDir(System.getenv("PROJECT_DIR"));
+        String[] mainArgs = tempArgs;
 
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");

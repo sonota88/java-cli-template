@@ -29,14 +29,14 @@ public class SubcmdMain {
             debug(fmt("temp arg %s (%s)", i, tempArgs[i]));
         }
 
-        Config.setCurrentDir(tempArgs[0]);
-        Config.setProjectDir(tempArgs[1]);
-        String subcmd = tempArgs[2];
+        Config.setCurrentDir(System.getenv("CURRENT_DIR"));
+        Config.setProjectDir(System.getenv("PROJECT_DIR"));
+        String subcmd = tempArgs[0];
         debug(fmt("subcmd (%s)", subcmd));
 
-        String[] mainArgs = new String[tempArgs.length - 3];
-        for (int i = 3; i < tempArgs.length; i++) {
-            mainArgs[i - 3] = tempArgs[i];
+        String[] mainArgs = new String[tempArgs.length - 1];
+        for (int i = 1; i < tempArgs.length; i++) {
+            mainArgs[i - 1] = tempArgs[i];
         }
 
         Options opts = new Options();
