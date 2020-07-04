@@ -2,6 +2,7 @@ package util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -82,6 +83,10 @@ public class Utils {
     public static String toString(Object obj) {
         // return ReflectionToStringBuilder.toString(obj, ToStringStyle.JSON_STYLE);
         return ReflectionToStringBuilder.toString(obj, ToStringStyle.SHORT_PREFIX_STYLE);
+    }
+
+    public static String[] toArray(List<String> list) {
+        return list.toArray(new String[list.size()]);
     }
 
 }
