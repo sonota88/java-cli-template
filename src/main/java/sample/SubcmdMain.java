@@ -38,10 +38,7 @@ public class SubcmdMain {
         String subcmd = tempArgs.get(0);
         debug(fmt("subcmd (%s)", subcmd));
 
-        List<String> mainArgs = new ArrayList<>();
-        for (int i = 1; i < tempArgs.size(); i++) {
-            mainArgs.add(tempArgs.get(i));
-        }
+        List<String> mainArgs = slice(tempArgs, 1, tempArgs.size());
 
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");
@@ -101,4 +98,14 @@ public class SubcmdMain {
         return new Model();
     }
 
+    private static List<String> slice(List<String> list, int from, int until) {
+        List<String> newList = new ArrayList<>();
+        int newSize = until - from;
+
+        for (int i = 0; i < newSize; i++) {
+            newList.add(list.get(from + i));
+        }
+
+        return newList;
+    }
 }
