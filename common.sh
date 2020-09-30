@@ -22,6 +22,8 @@ _exec_mvn() {
   local main_class="$1"; shift
   local args=$(_build_args "$@")
 
+  export RUN_MODE=mvn_exec
+
   $MVN_CMD exec:java \
     --quiet \
     "-Dexec.mainClass=${main_class}" \

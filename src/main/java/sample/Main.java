@@ -8,6 +8,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
+import org.apache.commons.lang3.StringUtils;
 
 import sample.model.Model;
 
@@ -28,17 +29,14 @@ public class Main {
     }
 
     static void _main(String[] rawArgs) throws Exception {
+        List<String> args = getArgs(rawArgs);
 
-        String allArgs = rawArgs[0];
-        List<String> tempArgs = Arrays.asList(allArgs.split("\u001f"));
-
-        for (int i = 0; i < tempArgs.size(); i++) {
-            putsf_e("temp arg %s (%s)", i, tempArgs.get(i));
+        for (int i = 0; i < args.size(); i++) {
+            putsf_e("arg %s (%s)", i, args.get(i));
         }
 
         Config.setCurrentDir(System.getenv("CURRENT_DIR"));
         Config.setProjectDir(System.getenv("PROJECT_DIR"));
-        List<String> mainArgs = tempArgs;
 
         Options opts = new Options();
         opts.addOption("h", "help", false, "Print help");
@@ -49,7 +47,7 @@ public class Main {
                 .desc("Print version")
                 .build());
 
-        CommandLine cl = new DefaultParser().parse(opts, toArray(mainArgs));
+        CommandLine cl = new DefaultParser().parse(opts, toArray(args));
 
         List<String> restArgs = cl.getArgList();
         putskv_e("restArgs size", restArgs.size());
@@ -81,6 +79,14 @@ public class Main {
         debug(prop("foo.bar"));
 
         createModel().main(restArgs);
+    }
+
+    private static List<String> getArgs(String[] rawArgs) {
+        if (StringUtils.equals(System.getenv("RUN_MODE"), "mvn_exec")) {
+            return Arrays.asList(rawArgs[0].split("\u001f"));
+        } else {
+            return Arrays.asList(rawArgs);
+        }
     }
 
     private static Model createModel() {
