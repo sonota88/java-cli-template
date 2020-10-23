@@ -1,20 +1,19 @@
 package sample.io;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.Reader;
 import java.io.StringReader;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class BufferedReaderWrapperTest {
 
     BufferedReaderWrapper sut;
 
-    @After
+    @AfterEach
     public void teardown() throws Exception{
         sut.close();
     }
@@ -27,7 +26,7 @@ public class BufferedReaderWrapperTest {
         sut = new BufferedReaderWrapper(r, '\n');
 
         String line = sut.readLineWithNewline();
-        assertThat(line, is(nullValue()));
+        assertEquals(null, line);
     }
 
     @Test
@@ -41,23 +40,24 @@ public class BufferedReaderWrapperTest {
 
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("aa\n"));
+            assertEquals("aa\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("\n"));
+            assertEquals("\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("ああ\n"));
+            assertEquals("ああ\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is(nullValue()));
+            assertEquals(null, line);
         }
     }
 
     @Test
+    @DisplayName("末尾に改行がないパターン")
     public void test_lf_no_last_newline() throws Exception {
         String str = "aa\n"
                 + "ああ";
@@ -67,15 +67,15 @@ public class BufferedReaderWrapperTest {
 
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("aa\n"));
+            assertEquals("aa\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("ああ"));
+            assertEquals("ああ", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is(nullValue()));
+            assertEquals(null, line);
         }
     }
 
@@ -90,19 +90,19 @@ public class BufferedReaderWrapperTest {
 
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("aa\r\n"));
+            assertEquals("aa\r\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("\r\n"));
+            assertEquals("\r\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is("ああ\r\n"));
+            assertEquals("ああ\r\n", line);
         }
         {
             String line = sut.readLineWithNewline();
-            assertThat(line, is(nullValue()));
+            assertEquals(null, line);
         }
     }
 

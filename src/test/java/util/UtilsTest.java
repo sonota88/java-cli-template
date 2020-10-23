@@ -1,9 +1,8 @@
 package util;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UtilsTest {
 
@@ -12,38 +11,42 @@ public class UtilsTest {
 
     @Test
     public void escape_basic(){
-        assertThat(
-                Utils.escape("\\ \" \b \f \n \r \t"),
-                is(BS + BS
-                        + " " + BS + DQ
-                        + " " + BS + "b"
-                        + " " + BS + "f"
-                        + " " + BS + "n"
-                        + " " + BS + "r"
-                        + " " + BS + "t"
-                        )
+        String expected = BS + BS
+                + " " + BS + DQ
+                + " " + BS + "b"
+                + " " + BS + "f"
+                + " " + BS + "n"
+                + " " + BS + "r"
+                + " " + BS + "t"
+                ;
+
+        assertEquals(
+                expected,
+                Utils.escape("\\ \" \b \f \n \r \t")
                 );
     }
 
     @Test
     public void escape_multi_occurence(){
-        assertThat(
-                Utils.escape("\n\n"),
-                is(
-                        BS + "n"
-                        + BS + "n"
-                        )
+        String expected = BS + "n"
+                + BS + "n"
+                ;
+
+        assertEquals(
+                expected,
+                Utils.escape("\n\n")
                 );
     }
 
     @Test
     public void escape_bs_normal_char(){
-        assertThat(
-                Utils.escape(BS + "n"),
-                is(
-                        BS + BS
-                        + "n"
-                        )
+        String expected = BS + BS
+                + "n"
+                ;
+
+        assertEquals(
+                expected,
+                Utils.escape(BS + "n")
                 );
     }
 
