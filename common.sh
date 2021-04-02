@@ -12,10 +12,10 @@ _build_args(){
   shift
 
   for arg in "$@"; do
-    args=$(printf "${args}${ARG_DELIM}${arg}")
+    args=$(printf -- "${args}${ARG_DELIM}${arg}")
   done
 
-  printf "$args"
+  printf -- "$args"
 }
 
 _exec_mvn() {
