@@ -12,9 +12,9 @@ import sample.Config;
 
 public class Utils {
 
-    private static final String LF = "\n";
-    private static final String BS = "\\";
-    private static final String DQ = "\"";
+    static final String LF = "\n";
+    static final String BS = "\\";
+    static final String DQ = "\"";
 
     public static void print(Object... os) {
         for (Object o : os) {
@@ -87,6 +87,10 @@ public class Utils {
 
     public static String[] toArray(List<String> list) {
         return list.toArray(new String[list.size()]);
+    }
+
+    public static String inspect(Object o) {
+        return Inspector.inspect(o);
     }
 
 }
