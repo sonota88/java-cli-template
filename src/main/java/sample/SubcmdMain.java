@@ -75,7 +75,7 @@ public class SubcmdMain {
 
         case "cat":
             opts.addOption("A", null, false, "Inspect");
-            cl = parser.parse(opts, mainArgs);
+            cl = parser.parse(opts, toArray(mainArgs));
 
             model.cat(cl.hasOption("A"));
             break;
@@ -85,12 +85,12 @@ public class SubcmdMain {
             break;
 
         case "hexdump":
-            model.hexdump(mainArgs[0]);
+            model.hexdump(mainArgs.get(0));
             break;
 
         case "split":
-            String file = mainArgs[0];
-            int div = Integer.valueOf(mainArgs[1]);
+            String file = mainArgs.get(0);
+            int div = Integer.valueOf(mainArgs.get(1));
             model.split(file, div);
             break;
 
