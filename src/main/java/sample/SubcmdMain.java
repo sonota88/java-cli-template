@@ -94,6 +94,17 @@ public class SubcmdMain {
             model.split(file, div);
             break;
 
+        case "diff":
+            opts.addOption("w", null, false, "Ignore white spaces");
+            cl = parser.parse(opts, toArray(mainArgs));
+
+            model.diff(
+                cl.getArgList().get(0),
+                cl.getArgList().get(1),
+                cl.hasOption("w")
+            );
+            break;
+
         default:
             throw new IllegalArgumentException("cmd (" + subcmd + ")");
         }

@@ -2,6 +2,7 @@ package sample.model;
 
 import static util.Utils.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -10,6 +11,7 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+import sample.model.command.Diff;
 import sample.model.command.Hexdump;
 import sample.model.command.Sort;
 import sample.model.command.Split;
@@ -87,6 +89,11 @@ public class Model {
     public void split(String file, int div) {
         Split cmd = new Split();
         cmd.exec(file, div);
+    }
+
+    public void diff(String pathA, String pathB, boolean ignoreSpace) {
+        Diff cmd = new Diff();
+        cmd.exec(new File(pathA), new File(pathB), ignoreSpace);
     }
 
 }
