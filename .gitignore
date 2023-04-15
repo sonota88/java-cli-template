@@ -12,3 +12,6 @@ z_*
 /.mvn/wrapper
 /mvnw
 /mvnw.cmd
+
+# Gradle
+/bin/
