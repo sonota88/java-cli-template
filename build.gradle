@@ -22,3 +22,7 @@ run {
     args project.args.split('\\s+')
   }
 }
+
+wrapper {
+  gradleVersion = '8.1'
+}
