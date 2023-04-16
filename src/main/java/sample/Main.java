@@ -82,7 +82,11 @@ public class Main {
     }
 
     private static List<String> getArgs(String[] rawArgs) {
-        if (StringUtils.equals(System.getenv("RUN_MODE"), "mvn_exec")) {
+        final String runMode = System.getenv("RUN_MODE");
+        if (
+                StringUtils.equals(runMode, "mvn_exec")
+                || StringUtils.equals(runMode, "gradle_exec")
+        ) {
             return Arrays.asList(rawArgs[0].split("\u001f"));
         } else {
             return Arrays.asList(rawArgs);

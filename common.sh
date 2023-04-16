@@ -39,6 +39,8 @@ _exec_gradle() {
   local main_class="$1"; shift
   local args=$(_build_args "$@")
 
+  export RUN_MODE=gradle_exec
+
   $GRADLE_CMD run \
     --quiet \
     "-DmainClassName=${main_class}" \
