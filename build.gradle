@@ -1,7 +1,15 @@
+plugins {
+  id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = System.getProperty("mainClassName")
+
+application {
+  mainClass = mainClassName
+}
 
 repositories {
   mavenCentral()
