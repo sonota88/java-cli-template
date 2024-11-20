@@ -30,11 +30,6 @@ _exec_mvn() {
     "-Dexec.args=${args}"
 }
 
-_build_gradle() {
-  $GRADLE_CMD clean
-  $GRADLE_CMD build
-}
-
 _exec_gradle() {
   local main_class="$1"; shift
   local args=$(_build_args "$@")

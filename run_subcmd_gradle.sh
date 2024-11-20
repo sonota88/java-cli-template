@@ -17,8 +17,4 @@ cd $PROJECT_DIR
 
 source "${PROJECT_DIR}/common.sh"
 
-if [ "$1" = "build" ] ; then
-  _build_gradle
-else
-  _exec_gradle "sample.SubcmdMain" "$@"
-fi
+_exec_gradle "sample.SubcmdMain" "$@"
