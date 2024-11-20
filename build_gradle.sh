@@ -12,7 +12,7 @@ _get_project_dir() {
 # --------------------------------
 
 setup(){
-  echo <<'__EOF'
+  cat <<'__EOF'
 gradle wrapper
 __EOF
 }
