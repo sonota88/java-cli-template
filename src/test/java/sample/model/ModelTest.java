@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class ModelTest {
 
     Model sut;
-    
+
     @BeforeEach
     public void setup() {
         sut = new Model();

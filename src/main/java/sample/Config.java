@@ -104,7 +104,7 @@ public class Config {
      * @param tail
      * @return project dir + tail (full path)
      */
-    public static String projectRelativePath(String tail){
+    public static String projectRelativePath(String tail) {
         try {
             return new File(projectDir, tail).getCanonicalPath();
         } catch (Throwable t) {

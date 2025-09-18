@@ -10,7 +10,7 @@ public class UtilsTest {
     private static final String DQ = "\"";
 
     @Test
-    public void escape_basic(){
+    public void escape_basic() {
         String expected = BS + BS
                 + " " + BS + DQ
                 + " " + BS + "b"
@@ -27,7 +27,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void escape_multi_occurence(){
+    public void escape_multi_occurence() {
         String expected = BS + "n"
                 + BS + "n"
                 ;
@@ -39,7 +39,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void escape_bs_normal_char(){
+    public void escape_bs_normal_char() {
         String expected = BS + BS
                 + "n"
                 ;
