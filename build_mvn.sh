@@ -13,7 +13,7 @@ _get_project_dir() {
 
 setup(){
   echo "Install Maven Wrapper"
-  mvn wrapper:wrapper -Dmaven=3.6.3
+  mvn wrapper:wrapper -Dmaven=3.9.11
 }
 
 _mvn_compile() {
